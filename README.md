@@ -1,7 +1,7 @@
 # fortigate-cis-compliance-script
 A python script to check a FortiGate for CIS compliance 
 
-Install:
+<h2>Install:</h2>
 
 pip install -r requirements.txt
 
