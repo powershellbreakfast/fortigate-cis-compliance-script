@@ -3,6 +3,8 @@ A python script to check a FortiGate for CIS compliance
 
 <h3>Install:</h3>
 
+Download main.py and requirements.txt.
+
 <code>pip install -r requirements.txt</code>
 
 <h3>Usage:</h3>
