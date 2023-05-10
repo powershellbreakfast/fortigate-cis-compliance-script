@@ -135,6 +135,7 @@ class FortiGateAPI:
         return response.text
 
 
+
 class api_checks:
     def __init__(self):
         pass
@@ -420,7 +421,7 @@ class api_checks:
             if score_update < firmware_score:
                 firmware_score = score_update 
 
-        if firmware_score == float(self,max_score):
+        if firmware_score == float(max_score):
             isPass = True
         else:
             isPass = False
@@ -2149,6 +2150,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     #config file mode or API mode
     if args.url is not None and args.key is not None:
+        api = FortiGateAPI()
         (total_score , possible_score, data) = query_api(args.url,args.key)
         print(f"Final Score: {total_score:.2f} out of {possible_score} points")
         print(data)
