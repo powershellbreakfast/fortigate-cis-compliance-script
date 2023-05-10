@@ -532,17 +532,20 @@ class api_checks:
             isPass = False
             #v3 enabled, is configured properly
             user_data = api.get("/cmdb/system.snmp/user")
-            points_per_user = max_score/len(user_data)
-            for snmp_user in user_data:
-                if snmp_user['security-level'] != "auth-priv":
-                    reason += f"SNMP v3 User {snmp_user['name']} has weak security, "
-                    score -= points_per_user
-                    
-            if reason == "SNMP v3 Enabled, ":
-                isPass = True
-                reason = "SNMP v3 Enabled and configured securely"
+            if len(user_data) > 0: 
+                points_per_user = max_score/len(user_data)
+                for snmp_user in user_data:
+                    if snmp_user['security-level'] != "auth-priv":
+                        reason += f"SNMP v3 User {snmp_user['name']} has weak security, "
+                        score -= points_per_user
+                        
+                if reason == "SNMP v3 Enabled, ":
+                    isPass = True
+                    reason = "SNMP v3 Enabled and configured securely"
 
-            return (score , isPass , reason)
+                return (score , isPass , reason)
+            else:
+                return (max_score , True , "SNMPv3 Enabled but no users are configured")
         else:
             return (max_score , True , "SNMPv3 Disabled")
 
